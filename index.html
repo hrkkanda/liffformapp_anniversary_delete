@@ -1,0 +1,36 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang="jp" dir="ltr"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;XP LIFF&lt;/title&gt;
+    &lt;script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+    document.addEventListener("DOMContentLoaded", () =&gt; {
+      liff
+        .init({
+          liffId: '&lt;LIFF_ID&gt;'
+        })
+        .then(() =&gt; {
+          document.getElementById('go').addEventListener('click', () =&gt; {
+            liff.getProfile().then(function(profile) {
+              document.getElementById('log').value += 'liff.getProfile()=' + JSON.stringify(profile) + '\n';
+            }).catch(function(error) {
+              document.getElementById('log').value += 'getProfile ng\n';
+            });
+          });
+        })
+        .catch((err) =&gt; {
+          document.getElementById('log').value = 'init ng\n' + err;
+        });
+    });
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;h3&gt;プロフィールを取得する&lt;/h3&gt;
+      &lt;input type="button" id="go" value="実行"/&gt;
+      &lt;textarea id="log" style="width:96%;height:100px;"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
