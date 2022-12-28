@@ -12,7 +12,7 @@
         }) .then(() => { 
           document.getElementById('go').addEventListener('click', () => { 
             liff.getProfile().then(function(profile) { 
-              document.getElementById('log').value += 'liff.getProfile()=' + JSON.stringify(profile) + '\n'; 
+              document.getElementById('log').value += 'liff.getProfile()=' + JSON.stringify(profile.userId) + '\n'; 
             }).catch(function(error) { 
               document.getElementById('log').value += 'getProfile ng\n'; 
             }); 
