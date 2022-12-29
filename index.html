@@ -11,7 +11,8 @@
           liffId: '1657751885-3NPLbdv9'
         }) .then(() => { 
           liff.getProfile().then(function(profile) { 
-            document.getElementById('log').value += JSON.stringify(profile.userId); 
+            document.getElementById('user').value += JSON.stringify(profile.userId); 
+            document.getElementById('log').value = document.getElementById('user').value;
           });  
         }) 
           .catch((err) => { 
@@ -21,8 +22,9 @@
     </script> 
   </head> 
   <body> 
+    <hidden id="user"></hidden>
     <div> 
-      <h3>削除しますか?</h3> 
+      <h3>削除しますか??</h3> 
       <textarea id="log" style="width:96%;height:100px;">
       </textarea> 
     </div> 
