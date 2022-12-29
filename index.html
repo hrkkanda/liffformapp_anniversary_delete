@@ -47,11 +47,7 @@
             const data_anniversary = data;
             for (var i=0; i<data_anniversary.length;i++){
                 var all_data = data_anniversary[i].split("\n");
-                if (all_data[1] == user_id) {
-                    document.getElementById('log').value += all_data[0] + "\n";
-                }else{
-                    document.getElementById('log').value += all_data.length + "\n";
-                };                
+                document.getElementById('log').value += all_data[1] + "\n";               
             };
             var toString = Object.prototype.toString;
         });
