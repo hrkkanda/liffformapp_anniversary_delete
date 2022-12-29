@@ -21,22 +21,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
 
     <title>記念日削除</title>
-  <script>
-  //GASのAPIのURL（各自変更してください。）
+<script type="text/javascript">
+    //GASのAPIのURL（各自変更してください。）
     const endpoint ="https://script.google.com/macros/s/AKfycbwyzvl6-eooitL76UrId5zD6yvXI-JrqdUG5Tw8wEfFaYbbXrpTnWlZi8UKtFMELI0keg/exec";        
-  //APIを使って非同期データを取得する
+    //APIを使って非同期データを取得する
     fetch(endpoint)
         .then(response => response.json())
-        /*成功した処理*/
+    /*成功した処理*/
         .then(data => {
         document.getElementById('log').value += data;
     });
-</script>
-
-<script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>    
-<script type="text/javascript">
+    //userId取得
     document.addEventListener("DOMContentLoaded", () => {
         liff
             .init({
@@ -50,28 +48,22 @@
             document.getElementById('id').value = 'init ng\n' + err; 
         });
     }); 
-</script>
-<script type="text/javascript">
-    function sectionCreate() {
-        var select = document.forms.formName.anniversary;
-        if (document.getElementById('log').value !== "undefined" && document.getElementById('user').value !== "undefined") {
-             for(var i = 1; i<document.getElementById('log').value.length;i++) {
-                 var all_msg = document.getElementById('log').value[i].split(" ")
-                 if (all_mag[1] === document.getElementById('user').value) {
-                     anniversary.options[i] = new Option(all_msg[0]);
-                 };
-             };
-        };
-    };
+    //option追加
+    const select = document.getElementById('anniversary');
+    const option = document.createElement('option');
+    
+    option.value = data;
+    option.inner.HTML = data;
+    select.appendChild(option);
 </script>
 </head>    
-  <body onLoad="sectionCreate()"> 
+  <body> 
     <hidden id="user"></hidden>
     <hidden id="log"></hidden>
     <form class="w-75 mx-auto"><p class="mt-3">記念日の名前　月日</p>
-        <select class="form-control w-100 mt-1" name="anniversary" required>
+        <select class="form-control w-100 mt-1" name="anniversary" id="anniversary" required>
             <option value="">選択してください</option>';
-    </select>
+        </select>
     <input type="submit" class="mt-4 btn btn-primary" value="送信">
     </form>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
