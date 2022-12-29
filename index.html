@@ -47,9 +47,9 @@
             const data_anniversary = data;
             for (var i=0; i<data_anniversary.length;i++){
                 var all_data = data_anniversary[i].split("\n");
-                //if (all_data[1] == document.getElementById('id_').value;) {
-                    document.getElementById('log').value += all_data[0] + "\n" + all_data[1] + "\n";
-                //};
+                if (all_data[1] == document.getElementById('id_').value;) {
+                    document.getElementById('log').value += all_data[0] + "\n";
+                };
             };
             document.getElementById('log').value += document.getElementById('id_').value;
         });
