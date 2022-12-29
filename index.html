@@ -5,6 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>    
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            liff
+                .init({
+                liffId: '1657751885-3NPLbdv9'
+            }) .then(() => { 
+                liff.getProfile().then(function(profile) {
+                    document.getElementById('id').value = JSON.stringify(profile.userId);
+                });  
+            }) 
+                .catch((err) => { 
+                document.getElementById('id').value = 'init ng\n' + err; 
+            });
+        });
+    </script>
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -18,44 +34,20 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-    <title>記念日削除</title>
-  <script>
-  //GASのAPIのURL（各自変更してください。）
-    const endpoint ="https://script.google.com/macros/s/AKfycbwyzvl6-eooitL76UrId5zD6yvXI-JrqdUG5Tw8wEfFaYbbXrpTnWlZi8UKtFMELI0keg/exec";        
-  //APIを使って非同期データを取得する
-    fetch(endpoint)
-        .then(response => response.json())
+    <title>記念日削除!</title>
+    <script>
+        //GASのAPIのURL（各自変更してください。）
+        const endpoint ="https://script.google.com/macros/s/AKfycbwyzvl6-eooitL76UrId5zD6yvXI-JrqdUG5Tw8wEfFaYbbXrpTnWlZi8UKtFMELI0keg/exec";        
+        //APIを使って非同期データを取得する
+        fetch(endpoint)
+            .then(response => response.json())
         /*成功した処理*/
-        .then(data => {
-        document.getElementById('log').value += data;
-    });
-</script>
-
-<script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>    
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", () => {
-        liff
-            .init({
-            liffId: '1657751885-3NPLbdv9'
-        }) .then(() => { 
-            liff.getProfile().then(function(profile) {
-                document.getElementById('user').value = JSON.stringify(profile.userId);
-                if (document.getElementById('user').value === "undefined") {
-                    document.getElementById('id').value = "";
-                } else {
-                    document.getElementById('id').value = document.getElementById('user').value;
-                };
-            });  
-        }) 
-            .catch((err) => { 
-            document.getElementById('id').value = 'init ng\n' + err; 
+            .then(data => {
+            document.getElementById('log').value += data;
         });
-    }); 
-</script>
+    </script>
 </head>
-
   <body> 
-    <hidden id="user"></hidden>
     <div> 
       <h3>削除しますか?</h3> 
       <textarea id="log" style="width:96%;height:100px;">
