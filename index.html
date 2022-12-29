@@ -28,7 +28,7 @@
                 liffId: '1657751885-3NPLbdv9'
             }) .then(() => { 
                 liff.getProfile().then(function(profile) {
-                    const user_id = JSON.stringify(profile.userId);
+                    const user_id = JSON.stringify(profile.userId).slice(1,-1);
                     document.getElementById('id').value = user_id;
                     document.getElementById('id_').value = user_id;
                 });  
@@ -66,4 +66,4 @@
     </div> 
   </body> 
 
-</html
+</html>
