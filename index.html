@@ -19,7 +19,7 @@
     </script>
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     
-    <title>記念日削除</title>
+    <title>記念日削除!</title>
     <script>
         //userid取得
         document.addEventListener("DOMContentLoaded", () => {
@@ -47,9 +47,10 @@
             const data_anniversary = data;
             for (var i=0; i<data_anniversary.length;i++){
                 var all_data = data_anniversary[i].split("\n");
-                document.getElementById('log').value += all_data[1] + "\n";               
+                document.getElementById('log').value += all_data[1] + typeof(all_data[1]) + "\n";               
             };
             var toString = Object.prototype.toString;
+            document.getElementById('log').value += user_id;
         });
     </script>
 </head>
