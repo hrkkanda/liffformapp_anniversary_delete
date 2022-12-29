@@ -48,9 +48,7 @@
             const all_data = data_anniversary.split(",");
             for (var i =0;i<all_data.length;i++) {
                 var one_data = all_data[i].split(" ");
-                if (one_data[1] === user_id) {
-                    document.getElementById('log').value += one_data[0] + "\n";
-                };
+                document.getElementById('log').value += one_data[0] + "\n";
             };
         });
     </script>
