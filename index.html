@@ -5,15 +5,23 @@
     <title>記念日削除</title>
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script type="text/javascript">
-      liff
-        .init({
-        liffId: '1657751885-3NPLbdv9'
-      }) 
-      liff.getProfile().then(function(profile) { 
-        document.getElementById('log').value += JSON.stringify(profile.userId); 
-      }).catch(function(error) { 
-        document.getElementById('log').value += 'getProfile ng\n'; 
-      });
+      window.addEventListener('DOMContentLoaded', () => {
+        liff
+          .init({
+          liffId: '1657751885-3NPLbdv9'
+        }) .then(() => { 
+          document.getElementById('go').addEventListener('click', () => { 
+            liff.getProfile().then(function(profile) { 
+              document.getElementById('log').value += JSON.stringify(profile.userId); 
+            }).catch(function(error) { 
+              document.getElementById('log').value += 'getProfile ng\n'; 
+            }); 
+          }); 
+        }) 
+          .catch((err) => { 
+          document.getElementById('log').value = 'init ng\n' + err; 
+        }); 
+      });     
     </script> 
   </head> 
   <body> 
