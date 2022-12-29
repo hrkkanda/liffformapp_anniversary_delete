@@ -29,7 +29,7 @@
             }) .then(() => { 
                 liff.getProfile().then(function(profile) {
                     const user_id = JSON.stringify(profile.userId).slice(1,-1);
-                    document.getElementById('id').value = user_id;
+                    //document.getElementById('id').value = user_id;
                     document.getElementById('id_').value = user_id;
                 });  
             }) 
@@ -52,7 +52,7 @@
                     document.getElementById('log').value += all_data[0] + "\n";
                 };
             };
-            document.getElementById('log').value += user_id;
+            //document.getElementById('log').value += user_id;
         });
     </script>
 </head>
@@ -62,8 +62,6 @@
       <h3>削除しますか?</h3> 
       <textarea id="log" style="width:96%;height:100px;">
       </textarea> 
-      <textarea id="id" style="width:96%;height:100px;">
-      </textarea>
     </div> 
   </body> 
 
