@@ -10,15 +10,13 @@
           .init({
           liffId: '1657751885-3NPLbdv9'
         }) .then(() => { 
-          document.getElementById('go').addEventListener('click', () => { 
-            liff.getProfile().then(function(profile) { 
-              document.getElementById('log').value += JSON.stringify(profile.userId); 
-            }).catch(function(error) { 
-              document.getElementById('log').value += 'getProfile ng\n'; 
-            }); 
+          liff.getProfile().then(function(profile) { 
+            document.getElementById('log').value += JSON.stringify(profile.userId); 
+          }).catch(function(error) { 
+            document.getElementById('log').value += 'getProfile ng\n';
           }); 
-        }) 
-          .catch((err) => { 
+        });  
+        .catch((err) => { 
           document.getElementById('log').value = 'init ng\n' + err; 
         }); 
       });     
