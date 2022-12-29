@@ -35,7 +35,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-    <title>記念日削除!</title>
+    <title>記念日削除</title>
     <script>
         //GASのAPIのURL（各自変更してください。）
         const endpoint ="https://script.google.com/macros/s/AKfycbwyzvl6-eooitL76UrId5zD6yvXI-JrqdUG5Tw8wEfFaYbbXrpTnWlZi8UKtFMELI0keg/exec";        
@@ -45,10 +45,10 @@
         /*成功した処理*/
             .then(data => {
             const data_anniversary = data;
-            document.getElementById('log').value += data_anniversary;
-            document.getElementById('log').value += typeof(data_anniversary);
+            for (var i=0; i<data_anniversary.length;i++){
+                document.getElementById('log').value += data_anniversary[i] + "\n";
+            };
             var toString = Object.prototype.toString;
-            document.getElementById('log').value += data_anniversary.length;
         });
     </script>
 </head>
