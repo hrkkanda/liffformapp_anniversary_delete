@@ -3,15 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
@@ -21,89 +17,52 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
 
     <title>記念日削除</title>
-<script type="text/javascript">
-    //GASのAPIのURL（各自変更してください。）
+  <script>
+  //GASのAPIのURL（各自変更してください。）
     const endpoint ="https://script.google.com/macros/s/AKfycbwyzvl6-eooitL76UrId5zD6yvXI-JrqdUG5Tw8wEfFaYbbXrpTnWlZi8UKtFMELI0keg/exec";        
-    //APIを使って非同期データを取得する
+  //APIを使って非同期データを取得する
     fetch(endpoint)
         .then(response => response.json())
-    const dat = data;
-    
-    //userId取得
+        /*成功した処理*/
+        .then(data => {
+        document.getElementById('log').value += data;
+    });
+</script>
+
+<script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>    
+<script type="text/javascript">
     document.addEventListener("DOMContentLoaded", () => {
         liff
             .init({
             liffId: '1657751885-3NPLbdv9'
-        })
-        const profile = liff.getProfile();
-        const userId = JSON.stringify(profile.userId);
+        }) .then(() => { 
+            liff.getProfile().then(function(profile) {
+                document.getElementById('user').value = JSON.stringify(profile.userId);
+                if (document.getElementById('user').value === "undefined") {
+                    document.getElementById('id').value = "";
+                } else {
+                    document.getElementById('id').value = document.getElementById('user').value;
+                };
+            });  
+        }) 
+            .catch((err) => { 
+            document.getElementById('id').value = 'init ng\n' + err; 
+        });
     }); 
-    //option追加
-    const select = document.getElementById('anniversary');
-    const option = document.createElement('option');
-    
-    option.value = userId;
-    option.innerHTML = userId;
-    select.appendChild(option);
 </script>
-</head>    
+</head>
+
   <body> 
     <hidden id="user"></hidden>
-    <hidden id="log"></hidden>
-    <form class="w-75 mx-auto"><p class="mt-3">記念日の名前　月日</p>
-        <select class="form-control w-100 mt-1" name="anniversary" id="anniversary" required>
-            <option value="">選択してください</option>';
-        </select>
-    <input type="submit" class="mt-4 btn btn-primary" value="送信">
-    </form>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script>
-
-        $(document).ready(function () {
-            const liffId = "1657751885-3NPLbdv9";
-            initializeLiff(liffId);
-        })
-
-        function initializeLiff(liffId) {
-            liff.init({
-                liffId: liffId
-            }).then(() => {
-                initializeApp();
-            }).catch((err) => {
-                console.log('LIFF Initialization failed ', err);
-            });
-        }
-
-        function sendText(text) {
-            liff.sendMessages([{
-                'type': 'text',
-                'text': text
-            }]).then(function () {
-                liff.closeWindow();
-            }).catch(function (error) {
-                window.alert('Failed to send message ' + error);
-            });
-        }
-
-        const params = (new URL(document.location)).searchParams;
-        const key = params.get('key');
-
-        $(function () {
-            $('form').submit(function () {
-                const name  = $('select[name="anniversary"]').val();
-                const msg = `${name}`;
-                sendText(msg);
-                return false;
-            });
-        });
-
-    </script>
+    <div> 
+      <h3>削除しますか?</h3> 
+      <textarea id="log" style="width:96%;height:100px;">
+      </textarea> 
+      <textarea id="id" style="width:96%;height:100px;">
+      </textarea>
+    </div> 
   </body> 
+
 </html>
