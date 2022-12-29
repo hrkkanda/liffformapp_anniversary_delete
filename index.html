@@ -24,8 +24,10 @@
     const endpoint ="https://script.google.com/macros/s/AKfycbwyzvl6-eooitL76UrId5zD6yvXI-JrqdUG5Tw8wEfFaYbbXrpTnWlZi8UKtFMELI0keg/exec";        
   //APIを使って非同期データを取得する
     fetch(endpoint)
-      .then(() => {
-      document.getElementById('log').value = response;
+        .then(response => response.json())
+        /*成功した処理*/
+        .then(data => {
+        document.getElementById('log').value += data;
     });
 </script>
 </head>
