@@ -46,7 +46,7 @@
             .then(data => {
             const data_anniversary = data;
             document.getElementById('log').value += data_anniversary;
-            document.getElementById('log').value += data_anniversary.length;
+            document.getElementById('log').value += JSON.stringify(data_anniversary);
         });
     </script>
 </head>
