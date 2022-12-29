@@ -55,7 +55,7 @@
   <body> 
     <hidden id="user"></hidden>
     <hidden id="log"></hidden>
-    <? 
+    <?php
       var result = '<form class="w-75 mx-auto"><p class="mt-3">記念日の名前　月日</p><select class="form-control w-100 mt-1" name="anniversary" required><option value="">選択してください</option>';
       if (document.getElementById('log').value !== "undefined" && document.getElementById('user').value !== "undefined") {
         for(var i = 0; i<document.getElementById('log').value.length;i++) { 
