@@ -46,10 +46,16 @@
             .then(data => {
             const data_anniversary = data;
             const user_id = document.getElementById('id_').value;
+            const selectDeleteAnniversary = document.getElementById('anniversary');
+            menuList.disabled = false;
+            const option = document.createElement('option');
             for (var i=0; i<data_anniversary.length;i++){
                 var all_data = data_anniversary[i].split("\n");
                 if (all_data[1] == document.getElementById('id_').value) {
                     document.getElementById('log').value += all_data[0] + "\n";
+                    option.value = all_data[0];
+                    option.innerHTML = all_data[0];
+                    selectDeleteAnniversary.appendChild(option); 
                 };
             };
             //document.getElementById('log').value += user_id;
@@ -63,6 +69,57 @@
       <textarea id="log" style="width:96%;height:100px;">
       </textarea> 
     </div> 
-  </body> 
+    <form class="w-75 mx-auto"><p class="mt-3">記念日の名前　月日</p>
+        <select class="form-control w-100 mt-1" name="anniversary" id="anniversary" required disabled>
+            <option disabled value="">選択してください</option>';
+        </select>
+        <input type="submit" class="mt-4 btn btn-primary" value="送信">
+    </form>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script>
 
+        $(document).ready(function () {
+            const liffId = "1657751885-3NPLbdv9";
+            initializeLiff(liffId);
+        })
+
+        function initializeLiff(liffId) {
+            liff.init({
+                liffId: liffId
+            }).then(() => {
+                initializeApp();
+            }).catch((err) => {
+                console.log('LIFF Initialization failed ', err);
+            });
+        }
+
+        function sendText(text) {
+            liff.sendMessages([{
+                'type': 'text',
+                'text': text
+            }]).then(function () {
+                liff.closeWindow();
+            }).catch(function (error) {
+                window.alert('Failed to send message ' + error);
+            });
+        }
+
+        const params = (new URL(document.location)).searchParams;
+        const key = params.get('key');
+
+        $(function () {
+            $('form').submit(function () {
+                const name  = $('select[name="anniversary"]').val();
+                const msg = `${name}`;
+                sendText(msg);
+                return false;
+            });
+        });
+
+    </script>
+  </body> 
 </html>
