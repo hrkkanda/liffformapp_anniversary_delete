@@ -51,7 +51,7 @@
                 let option = document.createElement('option');
                 var all_data = data_anniversary[i].split("\n");
                 if (all_data[1] == document.getElementById('id_').value) {
-                    document.getElementById('log').value += all_data[0] + "\n";
+                    //document.getElementById('log').value += all_data[0] + "\n";
                     option.value = all_data[0];
                     option.text = all_data[0];
                     selectDeleteAnniversary.appendChild(option); 
@@ -65,8 +65,10 @@
       <hidden id="id_"></hidden>
     <div> 
       <h3>削除しますか?</h3> 
+<!--
       <textarea id="log" style="width:96%;height:100px;">
       </textarea> 
+-->
     </div> 
     <form class="w-75 mx-auto"><p class="mt-3">記念日の名前　月日</p>
         <select class="form-control w-100 mt-1" name="anniversary" id="anniversary" required>
