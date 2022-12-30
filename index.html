@@ -19,7 +19,7 @@
     </script>
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     
-    <title>記念日削除!</title>
+    <title>記念日削除</title>
     <script>
         //userid取得
         document.addEventListener("DOMContentLoaded", () => {
@@ -62,10 +62,10 @@
     </script>
 </head>
   <body> 
-      <hidden id="id_"></hidden>
+    <hidden id="id_"></hidden>
+<!--
     <div> 
       <h3>削除しますか?</h3> 
-<!--
       <textarea id="log" style="width:96%;height:100px;">
       </textarea> 
 -->
@@ -114,7 +114,7 @@
         $(function () {
             $('form').submit(function () {
                 const name  = $('select[name="anniversary"]').val();
-                const msg = `${name}`;
+                const msg = "削除" + " " + `${name}`;
                 sendText(msg);
                 return false;
             });
