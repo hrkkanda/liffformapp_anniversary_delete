@@ -114,7 +114,8 @@
         $(function () {
             $('form').submit(function () {
                 const name  = $('select[name="anniversary"]').val();
-                const msg = "削除" + " " + `${name}`;
+                const all_msg = name.split(" ");
+                const msg = "削除" + "\n" + all_msg[0] + "\n" + all_msg[1];
                 sendText(msg);
                 return false;
             });
